@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ChatMessageThread } from "@/features/chat/components/message/thread";
 import { PromptEditor } from "@/features/chat/components/prompt/editor";
 import { SendPromptButton } from "@/features/chat/components/prompt/send-button";
+import { mockMessages } from "@/features/chat/mock-data";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -13,13 +14,14 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   const [prompt, setPrompt] = useState("");
   const { messages, sendMessage, isLoading } = useChat({
+    initialMessages: mockMessages,
     connection: fetchServerSentEvents("/api/chat"),
   });
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full flex-col gap-y-3">
       <ChatMessageThread
-        className="mx-auto mt-5 max-w-2xl flex-1"
+        className="mx-auto mt-3 max-w-2xl flex-1"
         messages={messages}
       />
       <form
