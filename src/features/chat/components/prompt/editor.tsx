@@ -11,10 +11,10 @@ interface PromptEditorProps extends OmitKnownKeys<
 > {}
 
 export function PromptEditor({ className, ...props }: PromptEditorProps) {
-  function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter" && e.ctrlKey) {
-      e.preventDefault();
-      const form = e.currentTarget.form;
+  function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter" && event.ctrlKey) {
+      event.preventDefault();
+      const form = event.currentTarget.form;
       if (form) {
         form.requestSubmit();
       }
