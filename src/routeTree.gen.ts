@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from "./routes/__root";
 import { Route as IndexRouteImport } from "./routes/index";
+import { Route as ApiChatIndexRouteImport } from "./routes/api/chat/index";
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => rootRouteImport,
 } as any);
+const ApiChatIndexRoute = ApiChatIndexRouteImport.update({
+  id: "/api/chat/",
+  path: "/api/chat/",
+  getParentRoute: () => rootRouteImport,
+} as any);
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
+  "/api/chat/": typeof ApiChatIndexRoute;
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
+  "/api/chat": typeof ApiChatIndexRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
   "/": typeof IndexRoute;
+  "/api/chat/": typeof ApiChatIndexRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/";
+  fullPaths: "/" | "/api/chat/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/";
-  id: "__root__" | "/";
+  to: "/" | "/api/chat";
+  id: "__root__" | "/" | "/api/chat/";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
+  ApiChatIndexRoute: typeof ApiChatIndexRoute;
 }
 
 declare module "@tanstack/react-router" {
@@ -48,11 +58,19 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof IndexRouteImport;
       parentRoute: typeof rootRouteImport;
     };
+    "/api/chat/": {
+      id: "/api/chat/";
+      path: "/api/chat";
+      fullPath: "/api/chat/";
+      preLoaderRoute: typeof ApiChatIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiChatIndexRoute: ApiChatIndexRoute,
 };
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
