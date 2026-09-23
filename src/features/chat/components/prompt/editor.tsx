@@ -1,5 +1,5 @@
 import type { OmitKnownKeys } from "@little-nebulae/type-utils";
-import type { ComponentProps, KeyboardEvent } from "react";
+import type { ComponentProps, KeyboardEvent, SetStateAction } from "react";
 
 import { cn } from "cn";
 
@@ -7,10 +7,18 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface PromptEditorProps extends OmitKnownKeys<
   ComponentProps<typeof Textarea>,
-  "onKeyDown"
-> {}
+  "value" | "onChange" | "onKeyDown"
+> {
+  prompt: string;
+  setPrompt: (value: SetStateAction<string>) => void;
+}
 
-export function PromptEditor({ className, ...props }: PromptEditorProps) {
+export function PromptEditor({
+  prompt,
+  setPrompt,
+  className,
+  ...props
+}: PromptEditorProps) {
   function handleKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
     if (event.key === "Enter" && event.ctrlKey) {
       event.preventDefault();
@@ -27,6 +35,8 @@ export function PromptEditor({ className, ...props }: PromptEditorProps) {
         "field-sizing-content max-h-[6lh] w-full resize-none rounded-none border-none bg-transparent p-3 shadow-none ring-0 outline-none focus-visible:ring-0 dark:bg-transparent",
         className,
       )}
+      value={prompt}
+      onChange={(event) => setPrompt(event.currentTarget.value)}
       onKeyDown={handleKeyDown}
       {...props}
     />

@@ -33,10 +33,7 @@ function HomePage() {
           setPrompt("");
         }}
       >
-        <PromptEditor
-          value={prompt}
-          onChange={(event) => setPrompt(event.currentTarget.value)}
-        />
+        <PromptEditor prompt={prompt} setPrompt={setPrompt} />
         <SendPromptButton className="m-1 self-end" isLoading={isLoading} />
       </form>
     </div>
