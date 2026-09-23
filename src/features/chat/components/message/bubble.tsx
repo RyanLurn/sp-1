@@ -2,6 +2,8 @@ import type { OmitKnownKeys } from "@little-nebulae/type-utils";
 import type { UIMessage } from "@tanstack/ai-react";
 import type { ComponentProps } from "react";
 
+import { Streamdown } from "streamdown";
+
 import { Bubble, BubbleContent } from "@/components/ui/bubble";
 import { Message, MessageContent } from "@/components/ui/message";
 
@@ -25,7 +27,9 @@ export function ChatMessageBubble({
           if (part.type === "text") {
             return (
               <Bubble key={index} variant={isUser ? "default" : "ghost"}>
-                <BubbleContent>{part.content}</BubbleContent>
+                <BubbleContent>
+                  <Streamdown>{part.content}</Streamdown>
+                </BubbleContent>
               </Bubble>
             );
           }
