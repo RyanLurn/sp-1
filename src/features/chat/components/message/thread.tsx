@@ -11,7 +11,7 @@ import {
 import { ChatMessageBubble } from "@/features/chat/components/message/bubble";
 
 interface ChatMessageThreadProps extends ComponentProps<
-  typeof MessageScroller
+  typeof MessageScrollerContent
 > {
   messages: UIMessage[];
 }
@@ -22,9 +22,9 @@ export function ChatMessageThread({
 }: ChatMessageThreadProps) {
   return (
     <MessageScrollerProvider>
-      <MessageScroller {...props}>
+      <MessageScroller>
         <MessageScrollerViewport>
-          <MessageScrollerContent>
+          <MessageScrollerContent {...props}>
             {messages.map((message, index) => (
               <MessageScrollerItem key={index}>
                 <ChatMessageBubble message={message} />

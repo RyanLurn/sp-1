@@ -37,7 +37,7 @@ function AppShell({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         <ThemeProvider defaultTheme="system" storageKey="theme">
-          <ThemeToggle className="fixed top-3 right-3" />
+          <ThemeToggle className="fixed top-3 right-3 z-50" />
           <div className="h-screen">{children}</div>
           <Toaster />
         </ThemeProvider>

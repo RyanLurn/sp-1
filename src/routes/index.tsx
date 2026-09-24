@@ -25,7 +25,7 @@ function HomePage() {
         messages={messages}
       />
       <form
-        className="mx-auto mb-3 flex w-full max-w-2xl flex-col overflow-hidden rounded-xl border bg-background shadow-sm"
+        className="mx-auto mb-3 flex min-h-fit w-full max-w-2xl flex-col overflow-hidden rounded-xl border bg-background p-1 shadow-sm"
         onSubmit={(event) => {
           event.preventDefault();
           if (prompt.trim() === "") {
@@ -36,7 +36,7 @@ function HomePage() {
         }}
       >
         <PromptEditor prompt={prompt} setPrompt={setPrompt} />
-        <SendPromptButton className="m-1 self-end" isLoading={isLoading} />
+        <SendPromptButton className="self-end" isLoading={isLoading} />
       </form>
     </div>
   );
