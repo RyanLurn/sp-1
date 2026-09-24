@@ -32,7 +32,7 @@ export function PromptEditor({
   return (
     <Textarea
       className={cn(
-        "field-sizing-content max-h-[6lh] w-full resize-none rounded-none border-none bg-transparent p-3 shadow-none ring-0 outline-none focus-visible:ring-0 dark:bg-transparent",
+        "field-sizing-content max-h-64 w-full resize-none rounded-none border-none bg-transparent p-3 shadow-none ring-0 outline-none focus-visible:ring-0 dark:bg-transparent",
         className,
       )}
       value={prompt}
