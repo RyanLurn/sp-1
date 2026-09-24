@@ -26,7 +26,7 @@ export function PromptContainer({
   return (
     <form
       className={cn(
-        "mb-3 flex min-h-fit w-full flex-col overflow-hidden rounded-xl border bg-background p-1",
+        "flex min-h-fit w-full flex-col overflow-hidden rounded-xl border bg-background p-1",
         className,
       )}
       onSubmit={(event) => {

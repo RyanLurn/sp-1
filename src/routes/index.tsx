@@ -24,7 +24,7 @@ function HomePage() {
       <PromptContainer
         sendMessage={sendMessage}
         isLoading={isLoading}
-        className="mx-auto max-w-2xl"
+        className="mx-auto mb-3 max-w-2xl"
       />
     </div>
   );
