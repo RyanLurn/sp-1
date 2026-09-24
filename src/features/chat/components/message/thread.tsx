@@ -1,6 +1,8 @@
 import type { UIMessage } from "@tanstack/ai-react";
 import type { ComponentProps } from "react";
 
+import { cn } from "cn";
+
 import {
   MessageScrollerProvider,
   MessageScroller,
@@ -18,13 +20,14 @@ interface ChatMessageThreadProps extends ComponentProps<
 
 export function ChatMessageThread({
   messages,
+  className,
   ...props
 }: ChatMessageThreadProps) {
   return (
     <MessageScrollerProvider>
       <MessageScroller>
         <MessageScrollerViewport>
-          <MessageScrollerContent {...props}>
+          <MessageScrollerContent className={cn("pt-3", className)} {...props}>
             {messages.map((message, index) => (
               <MessageScrollerItem key={index}>
                 <ChatMessageBubble message={message} />
