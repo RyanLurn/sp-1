@@ -29,7 +29,11 @@ export function ChatMessageThread({
         <MessageScrollerViewport>
           <MessageScrollerContent className={cn("pt-3", className)} {...props}>
             {messages.map((message, index) => (
-              <MessageScrollerItem key={index}>
+              <MessageScrollerItem
+                key={index}
+                messageId={message.id}
+                scrollAnchor={message.role === "user"}
+              >
                 <ChatMessageBubble message={message} />
               </MessageScrollerItem>
             ))}
