@@ -27,7 +27,7 @@ export function ChatMessageBubble({
         {message.parts.map((part, index) => {
           if (part.type === "text") {
             return (
-              <Bubble key={index} variant={isUser ? "default" : "ghost"}>
+              <Bubble key={index} variant={isUser ? "secondary" : "ghost"}>
                 <BubbleContent>
                   <Streamdown plugins={{ code }}>{part.content}</Streamdown>
                 </BubbleContent>

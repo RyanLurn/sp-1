@@ -1,0 +1,4 @@
+[data-streamdown="inline-code"] {
+  font-size: inherit;
+  @apply border text-red-300;
+}
