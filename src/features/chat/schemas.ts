@@ -11,7 +11,7 @@ export type ChatMessage = UIMessage<ChatMessageMetadata, {}, {}>;
 export async function safeValidateChatMessages({
   messages,
 }: {
-  messages: ChatMessage[];
+  messages: unknown;
 }) {
   return safeValidateUIMessages<ChatMessage>({
     messages,
