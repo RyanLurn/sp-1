@@ -1,27 +1,29 @@
-import {
-  chat,
-  chatParamsFromRequest,
-  toServerSentEventsResponse,
-} from "@tanstack/ai";
-import { createFileRoute } from "@tanstack/react-router";
+import type { UIMessage } from "ai";
 
-import { groqTextAdapter } from "@/config/ai/groq";
+import { createFileRoute } from "@tanstack/react-router";
+import {
+  convertToModelMessages,
+  createUIMessageStreamResponse,
+  streamText,
+  toUIMessageStream,
+} from "ai";
+
+import { groqProvider } from "@/config/ai/groq";
 
 export const Route = createFileRoute("/api/chat/")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const { messages, threadId, runId } =
-          await chatParamsFromRequest(request);
+        const { messages }: { messages: UIMessage[] } = await request.json();
 
-        const stream = chat({
-          adapter: groqTextAdapter("openai/gpt-oss-120b"),
-          messages,
-          threadId,
-          runId,
+        const { stream } = streamText({
+          model: groqProvider("openai/gpt-oss-20b"),
+          messages: await convertToModelMessages(messages),
         });
 
-        return toServerSentEventsResponse(stream);
+        return createUIMessageStreamResponse({
+          stream: toUIMessageStream({ stream }),
+        });
       },
     },
   },
