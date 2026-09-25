@@ -1,6 +1,8 @@
 import { useChat } from "@ai-sdk/react";
 import { createFileRoute } from "@tanstack/react-router";
 
+import type { ChatMessage } from "@/features/chat/schemas";
+
 import { ChatMessageThread } from "@/features/chat/components/message/thread";
 import { PromptContainer } from "@/features/chat/components/prompt/container";
 
@@ -9,7 +11,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { messages, sendMessage, status } = useChat();
+  const { messages, sendMessage, status } = useChat<ChatMessage>();
 
   return (
     <div className="flex h-full flex-col gap-y-3">
