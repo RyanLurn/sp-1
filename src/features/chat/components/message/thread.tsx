@@ -1,7 +1,8 @@
-import type { UIMessage } from "ai";
 import type { ComponentProps } from "react";
 
 import { cn } from "cn";
+
+import type { ChatMessage } from "@/features/chat/schemas";
 
 import {
   MessageScrollerProvider,
@@ -15,7 +16,7 @@ import { ChatMessageBubble } from "@/features/chat/components/message/bubble";
 interface ChatMessageThreadProps extends ComponentProps<
   typeof MessageScrollerContent
 > {
-  messages: UIMessage[];
+  messages: ChatMessage[];
 }
 
 export function ChatMessageThread({

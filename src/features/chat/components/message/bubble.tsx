@@ -1,10 +1,11 @@
 import type { OmitKnownKeys } from "@little-nebulae/type-utils";
-import type { UIMessage } from "ai";
 import type { ComponentProps } from "react";
 
 import { code } from "@streamdown/code";
 import { mermaid } from "@streamdown/mermaid";
 import { Streamdown } from "streamdown";
+
+import type { ChatMessage } from "@/features/chat/schemas";
 
 import { useTheme } from "@/components/theme/provider";
 import { Bubble, BubbleContent } from "@/components/ui/bubble";
@@ -14,7 +15,7 @@ interface ChatMessageBubbleProps extends OmitKnownKeys<
   ComponentProps<typeof Message>,
   "align"
 > {
-  message: UIMessage;
+  message: ChatMessage;
 }
 
 export function ChatMessageBubble({
