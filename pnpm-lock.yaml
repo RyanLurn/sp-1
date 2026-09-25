@@ -181,9 +181,15 @@ importers:
       '@fontsource-variable/geist-mono':
         specifier: 5.3.0
         version: 5.3.0
+      '@little-nebulae/http':
+        specifier: 0.1.0
+        version: 0.1.0(@little-nebulae/type-utils@1.2.0)
       '@little-nebulae/type-utils':
         specifier: 1.2.0
         version: 1.2.0
+      '@little-nebulae/web-fetch':
+        specifier: 0.2.0
+        version: 0.2.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5))(@little-nebulae/result@1.0.0)(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)
       '@shadcn/react':
         specifier: 0.3.1
         version: 0.3.1(@types/react@19.3.0)(react@19.3.0)
@@ -693,8 +699,38 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
+  '@little-nebulae/error@1.1.0':
+    resolution: {integrity: sha512-yzlf2gHvHp311kChWsXp+H9XsrE2VG2uRDRLqgIybhAyanYuZvhDRA8ol3tSEaIFNDYUNwe6hDfIso/mOIv9Bg==}
+    peerDependencies:
+      '@little-nebulae/type-utils': ^1.1.0
+
+  '@little-nebulae/http@0.1.0':
+    resolution: {integrity: sha512-JBrySyy5RXkfSsdkWNq1K5h9K0goOaKvMgq7dwUAhYMLXyxO7l4VkfunNjLb2hi67aYXV3NsLh+CivCj+1pQPw==}
+    peerDependencies:
+      '@little-nebulae/type-utils': ^1.0.0
+
+  '@little-nebulae/json@0.1.0':
+    resolution: {integrity: sha512-0KANRngazKPEA6070nAL0r0cmbmN9l27kWkoljKUfCr5c8QeJeSYjEuzeCBJXTcT5c9UwQh523ZJvxSyGpz2vg==}
+    peerDependencies:
+      '@little-nebulae/error': ^1.0.0
+      '@little-nebulae/result': ^1.0.0
+      zod: ^4.6.0
+
+  '@little-nebulae/result@1.0.0':
+    resolution: {integrity: sha512-yetamyO3lwefhoXdemxPdjRLrI5yXJIm6ZwGi4KgiWKaQpfKi8myAuIjlzTkheUD/Z4hRnJmi/Sm9ovvCnxkqQ==}
+
   '@little-nebulae/type-utils@1.2.0':
     resolution: {integrity: sha512-dztj0ThTslqowbRd6XNQ5/Dz9WV+fYBvhCW3CjokXCmRQWvyrJNCU2sulACqyt1V7v8fjrjGcwCwaEQhGWM8hQ==}
+
+  '@little-nebulae/web-fetch@0.2.0':
+    resolution: {integrity: sha512-AbGsJ+YETGGE3ClkzEqCKZWMCy2gTj97kv/lqgP4Lv0i7g6T2Rb5qKHWjyrJ3adXJY7/GqCPB03RpSLYUMDb4A==}
+    peerDependencies:
+      '@little-nebulae/error': ^1.0.0
+      '@little-nebulae/http': ^0.1.0
+      '@little-nebulae/json': ^0.1.0
+      '@little-nebulae/result': ^1.0.0
+      '@little-nebulae/type-utils': ^1.2.0
+      zod: ^4.6.0
 
   '@mermaid-js/parser@1.2.1':
     resolution: {integrity: sha512-n12NohV3mrUyUL2o93IgG/ifeW9FTyeJn3zDxkhwa8MJ9Fxg3HQMlA3RiGmD/3UnJvheztkjjQAjA2T4LmUcpw==}
@@ -4481,7 +4517,32 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
+  '@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0)':
+    dependencies:
+      '@little-nebulae/type-utils': 1.2.0
+
+  '@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0)':
+    dependencies:
+      '@little-nebulae/type-utils': 1.2.0
+
+  '@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5)':
+    dependencies:
+      '@little-nebulae/error': 1.1.0(@little-nebulae/type-utils@1.2.0)
+      '@little-nebulae/result': 1.0.0
+      zod: 4.6.5
+
+  '@little-nebulae/result@1.0.0': {}
+
   '@little-nebulae/type-utils@1.2.0': {}
+
+  '@little-nebulae/web-fetch@0.2.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5))(@little-nebulae/result@1.0.0)(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)':
+    dependencies:
+      '@little-nebulae/error': 1.1.0(@little-nebulae/type-utils@1.2.0)
+      '@little-nebulae/http': 0.1.0(@little-nebulae/type-utils@1.2.0)
+      '@little-nebulae/json': 0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5)
+      '@little-nebulae/result': 1.0.0
+      '@little-nebulae/type-utils': 1.2.0
+      zod: 4.6.5
 
   '@mermaid-js/parser@1.2.1':
     dependencies:
