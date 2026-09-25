@@ -1,5 +1,5 @@
 import type { OmitKnownKeys } from "@little-nebulae/type-utils";
-import type { UIMessage } from "@tanstack/ai-react";
+import type { UIMessage } from "ai";
 import type { ComponentProps } from "react";
 
 import { code } from "@streamdown/code";
@@ -38,7 +38,7 @@ export function ChatMessageBubble({
                       config: { theme: theme === "light" ? "default" : "dark" },
                     }}
                   >
-                    {part.content}
+                    {part.text}
                   </Streamdown>
                 </BubbleContent>
               </Bubble>

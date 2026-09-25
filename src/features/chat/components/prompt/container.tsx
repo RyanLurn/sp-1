@@ -11,7 +11,7 @@ interface PromptContainerProps extends OmitKnownKeys<
   ComponentProps<"form">,
   "onSubmit"
 > {
-  sendMessage: (content: string) => Promise<void>;
+  sendMessage: ({ text }: { text: string }) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -34,7 +34,7 @@ export function PromptContainer({
         if (prompt.trim() === "") {
           return;
         }
-        void sendMessage(prompt);
+        void sendMessage({ text: prompt });
         setPrompt("");
       }}
       {...props}

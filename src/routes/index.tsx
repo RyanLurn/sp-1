@@ -1,4 +1,4 @@
-import { fetchServerSentEvents, useChat } from "@tanstack/ai-react";
+import { useChat } from "@ai-sdk/react";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ChatMessageThread } from "@/features/chat/components/message/thread";
@@ -9,9 +9,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
-  const { messages, sendMessage, isLoading } = useChat({
-    connection: fetchServerSentEvents("/api/chat"),
-  });
+  const { messages, sendMessage, status } = useChat();
 
   return (
     <div className="flex h-full flex-col gap-y-3">
@@ -21,7 +19,7 @@ function HomePage() {
       />
       <PromptContainer
         sendMessage={sendMessage}
-        isLoading={isLoading}
+        isLoading={status === "streaming"}
         className="mx-auto mb-3 max-w-2xl"
       />
     </div>

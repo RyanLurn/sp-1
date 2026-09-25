@@ -1,4 +1,4 @@
-import type { UIMessage } from "@tanstack/ai-react";
+import type { UIMessage } from "ai";
 import type { ComponentProps } from "react";
 
 import { cn } from "cn";

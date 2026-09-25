@@ -1,4 +1,4 @@
-import type { UIMessage } from "@tanstack/ai-react";
+import type { UIMessage } from "ai";
 
 export const mockMessages: UIMessage[] = [
   {
@@ -7,7 +7,7 @@ export const mockMessages: UIMessage[] = [
     parts: [
       {
         type: "text",
-        content: `You are **Atlas**, a senior full-stack engineering assistant.
+        text: `You are **Atlas**, a senior full-stack engineering assistant.
 
 ## Guidelines
 
@@ -26,7 +26,7 @@ export const mockMessages: UIMessage[] = [
     parts: [
       {
         type: "text",
-        content: `Hey! I'm building a **React + Node** app and want to add real-time updates. What are my options? I've heard of WebSockets and SSE but I'm not sure when to use which.`,
+        text: `Hey! I'm building a **React + Node** app and want to add real-time updates. What are my options? I've heard of WebSockets and SSE but I'm not sure when to use which.`,
       },
     ],
   },
@@ -36,7 +36,7 @@ export const mockMessages: UIMessage[] = [
     parts: [
       {
         type: "text",
-        content: `Great question! There are three main approaches, and the right one depends on your data flow. Let me break it down.
+        text: `Great question! There are three main approaches, and the right one depends on your data flow. Let me break it down.
 
 ## The Options
 
@@ -124,7 +124,7 @@ Want me to show the WebSocket version too?`,
     parts: [
       {
         type: "text",
-        content: `Yes please! Also, I'll need auth on the socket connection. How do I handle that?`,
+        text: `Yes please! Also, I'll need auth on the socket connection. How do I handle that?`,
       },
     ],
   },
@@ -134,7 +134,7 @@ Want me to show the WebSocket version too?`,
     parts: [
       {
         type: "text",
-        content: `Auth on WebSockets is a classic gotcha, because the browser \`WebSocket\` API **doesn't let you set custom headers**. Here are the common patterns:
+        text: `Auth on WebSockets is a classic gotcha, because the browser \`WebSocket\` API **doesn't let you set custom headers**. Here are the common patterns:
 
 - **Query string token** — easy, but tokens can end up in server logs ⚠️
 - **Cookie-based auth** — works automatically if same-origin
@@ -262,7 +262,7 @@ Let me know if you want to add **rooms** or **presence** next!`,
     parts: [
       {
         type: "text",
-        content: `This is super helpful. Now unrelated: I have a Python script that's really slow. Can you review it?
+        text: `This is super helpful. Now unrelated: I have a Python script that's really slow. Can you review it?
 
 \`\`\`python
 def find_duplicates(items):
@@ -284,7 +284,7 @@ It takes forever on lists with 100k+ items.`,
     parts: [
       {
         type: "text",
-        content: `I can see why! Let's analyze it.
+        text: `I can see why! Let's analyze it.
 
 ## Complexity Analysis
 
@@ -362,7 +362,7 @@ Anything else you'd like me to look at?`,
     parts: [
       {
         type: "text",
-        content: `Nice. Can you give me a checklist for shipping my app to production? And maybe a Dockerfile and a quick bash script for deploying?`,
+        text: `Nice. Can you give me a checklist for shipping my app to production? And maybe a Dockerfile and a quick bash script for deploying?`,
       },
     ],
   },
@@ -372,7 +372,7 @@ Anything else you'd like me to look at?`,
     parts: [
       {
         type: "text",
-        content: `Absolutely. Here's a production readiness checklist, followed by the Docker and deploy pieces.
+        text: `Absolutely. Here's a production readiness checklist, followed by the Docker and deploy pieces.
 
 # 🚀 Production Readiness Checklist
 
@@ -489,7 +489,7 @@ Want a \`docker-compose.yml\` with Postgres and Redis next?`,
     parts: [
       {
         type: "text",
-        content: `Last one: can you explain how to type a generic \`useFetch\` hook in TypeScript? Also what's the difference between \`interface\` and \`type\`?`,
+        text: `Last one: can you explain how to type a generic \`useFetch\` hook in TypeScript? Also what's the difference between \`interface\` and \`type\`?`,
       },
     ],
   },
@@ -499,7 +499,7 @@ Want a \`docker-compose.yml\` with Postgres and Redis next?`,
     parts: [
       {
         type: "text",
-        content: `Two great TypeScript questions. I'll start with the hook, then cover \`interface\` vs \`type\`.
+        text: `Two great TypeScript questions. I'll start with the hook, then cover \`interface\` vs \`type\`.
 
 ## Generic \`useFetch\`
 
