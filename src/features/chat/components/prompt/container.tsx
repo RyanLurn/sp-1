@@ -4,7 +4,7 @@ import type { ComponentProps } from "react";
 import { cn } from "cn";
 import { useState } from "react";
 
-import type { ChatMessageMetadata } from "@/features/chat/schemas";
+import type { ChatMessage } from "@/features/chat/schemas";
 
 import { PromptEditor } from "@/features/chat/components/prompt/editor";
 import { SendPromptButton } from "@/features/chat/components/prompt/send-button";
@@ -18,7 +18,7 @@ interface PromptContainerProps extends OmitKnownKeys<
     metadata,
   }: {
     text: string;
-    metadata: ChatMessageMetadata;
+    metadata?: ChatMessage["metadata"];
   }) => Promise<void>;
   isLoading: boolean;
 }
@@ -42,7 +42,7 @@ export function PromptContainer({
         if (prompt.trim() === "") {
           return;
         }
-        void sendMessage({ text: prompt, metadata: null });
+        void sendMessage({ text: prompt });
         setPrompt("");
       }}
       {...props}

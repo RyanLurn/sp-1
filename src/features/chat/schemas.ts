@@ -15,6 +15,6 @@ export async function safeValidateChatMessages({
 }) {
   return safeValidateUIMessages<ChatMessage>({
     messages,
-    metadataSchema: ChatMessageMetadataSchema,
+    metadataSchema: ChatMessageMetadataSchema.optional(),
   });
 }
