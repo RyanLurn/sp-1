@@ -1,5 +1,5 @@
 import { useChat } from "@ai-sdk/react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { DefaultChatTransport } from "ai";
 
 import type { ChatMessage } from "@/features/chat/schemas";
@@ -7,14 +7,26 @@ import type { ChatMessage } from "@/features/chat/schemas";
 import { ChatMessageThread } from "@/features/chat/components/message/thread";
 import { PromptContainer } from "@/features/chat/components/prompt/container";
 import { NEW_USER_MESSAGE_KEY } from "@/features/chat/constants";
+import { listChatMessages } from "@/features/chat/ops/list-messages";
 import { generateUuidV7 } from "@/lib/uuid";
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    const listResult = await listChatMessages();
+
+    if (listResult.success) {
+      return listResult.data;
+    }
+
+    throw redirect({ to: "/500" });
+  },
   component: HomePage,
 });
 
 function HomePage() {
+  const initialMessages = Route.useLoaderData();
   const { messages, sendMessage, status } = useChat<ChatMessage>({
+    messages: initialMessages,
     transport: new DefaultChatTransport({
       prepareSendMessagesRequest: ({ messages }) => {
         return {

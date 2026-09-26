@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from "./routes/__root";
 import { Route as IndexRouteImport } from "./routes/index";
+import { Route as R500IndexRouteImport } from "./routes/500/index";
 import { Route as ApiChatIndexRouteImport } from "./routes/api/chat/index";
 
 const IndexRoute = IndexRouteImport.update({
   id: "/",
   path: "/",
+  getParentRoute: () => rootRouteImport,
+} as any);
+const R500IndexRoute = R500IndexRouteImport.update({
+  id: "/500/",
+  path: "/500/",
   getParentRoute: () => rootRouteImport,
 } as any);
 const ApiChatIndexRoute = ApiChatIndexRouteImport.update({
@@ -25,27 +31,31 @@ const ApiChatIndexRoute = ApiChatIndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
+  "/500/": typeof R500IndexRoute;
   "/api/chat/": typeof ApiChatIndexRoute;
 }
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
+  "/500": typeof R500IndexRoute;
   "/api/chat": typeof ApiChatIndexRoute;
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport;
   "/": typeof IndexRoute;
+  "/500/": typeof R500IndexRoute;
   "/api/chat/": typeof ApiChatIndexRoute;
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "/api/chat/";
+  fullPaths: "/" | "/500/" | "/api/chat/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "/api/chat";
-  id: "__root__" | "/" | "/api/chat/";
+  to: "/" | "/500" | "/api/chat";
+  id: "__root__" | "/" | "/500/" | "/api/chat/";
   fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
+  R500IndexRoute: typeof R500IndexRoute;
   ApiChatIndexRoute: typeof ApiChatIndexRoute;
 }
 
@@ -56,6 +66,13 @@ declare module "@tanstack/react-router" {
       path: "/";
       fullPath: "/";
       preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/500/": {
+      id: "/500/";
+      path: "/500";
+      fullPath: "/500/";
+      preLoaderRoute: typeof R500IndexRouteImport;
       parentRoute: typeof rootRouteImport;
     };
     "/api/chat/": {
@@ -70,6 +87,7 @@ declare module "@tanstack/react-router" {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R500IndexRoute: R500IndexRoute,
   ApiChatIndexRoute: ApiChatIndexRoute,
 };
 export const routeTree = rootRouteImport
