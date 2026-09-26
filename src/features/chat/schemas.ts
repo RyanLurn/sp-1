@@ -8,6 +8,7 @@ import {
   CHAT_MESSAGE_ROLE_LIST,
   CHAT_MESSAGE_SYSTEM_ROLE,
   CHAT_MESSAGE_USER_ROLE,
+  NEW_USER_MESSAGE_KEY,
 } from "@/features/chat/constants";
 
 export const ChatMessageIdSchema = z.uuidv7().brand<"ChatMessageId">();
@@ -68,7 +69,7 @@ export const ChatMessageSchema = z.discriminatedUnion(CHAT_MESSAGE_ROLE_KEY, [
 export type ChatMessage = z.infer<typeof ChatMessageSchema>;
 
 export const SendMessageRequestBodySchema = z.object({
-  newUserMessage: UserChatMessageSchema.omit({ id: true }),
+  [NEW_USER_MESSAGE_KEY]: UserChatMessageSchema.omit({ id: true }),
 });
 export type SendMessageRequestBody = z.infer<
   typeof SendMessageRequestBodySchema

@@ -14,3 +14,5 @@ export const CHAT_MESSAGE_PART_STREAMING_STATE_LIST = [
   "streaming",
   "done",
 ] as const;
+
+export const NEW_USER_MESSAGE_KEY = "newUserMessage";

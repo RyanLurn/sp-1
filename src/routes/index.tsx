@@ -6,6 +6,7 @@ import type { ChatMessage } from "@/features/chat/schemas";
 
 import { ChatMessageThread } from "@/features/chat/components/message/thread";
 import { PromptContainer } from "@/features/chat/components/prompt/container";
+import { NEW_USER_MESSAGE_KEY } from "@/features/chat/constants";
 import { generateUuidV7 } from "@/lib/uuid";
 
 export const Route = createFileRoute("/")({
@@ -16,7 +17,9 @@ function HomePage() {
   const { messages, sendMessage, status } = useChat<ChatMessage>({
     transport: new DefaultChatTransport({
       prepareSendMessagesRequest: ({ messages }) => {
-        return { body: { newUserMessage: messages[messages.length - 1] } };
+        return {
+          body: { [NEW_USER_MESSAGE_KEY]: messages[messages.length - 1] },
+        };
       },
     }),
     generateId: generateUuidV7,
