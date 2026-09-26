@@ -1,5 +1,6 @@
 import { useChat } from "@ai-sdk/react";
 import { createFileRoute } from "@tanstack/react-router";
+import { DefaultChatTransport } from "ai";
 
 import type { ChatMessage } from "@/features/chat/schemas";
 
@@ -13,6 +14,11 @@ export const Route = createFileRoute("/")({
 
 function HomePage() {
   const { messages, sendMessage, status } = useChat<ChatMessage>({
+    transport: new DefaultChatTransport({
+      prepareSendMessagesRequest: ({ messages }) => {
+        return { body: { message: messages[messages.length - 1] } };
+      },
+    }),
     generateId: generateUuidV7,
   });
 
