@@ -12,7 +12,7 @@ import type { ChatMessage } from "@/features/chat/schemas";
 
 import { listChatMessages } from "@/db/queries/chat-message/list.server";
 
-export const loadChatMessages = createServerFn({ strict: false }).handler(
+export const loadChatMessages = createServerFn().handler(
   async (): Promise<
     Result<ChatMessage[], FlatErrorObject<UnexpectedErrorCode, null>>
   > => {

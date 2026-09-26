@@ -1,4 +1,11 @@
-import type { InferUITools, ToolSet, UIMessage } from "ai";
+import type { OmitKnownKeys } from "@little-nebulae/type-utils";
+import type {
+  InferUITools,
+  TextUIPart,
+  ToolSet,
+  UIMessage,
+  UIMessagePart,
+} from "ai";
 
 import { safeValidateUIMessages } from "ai";
 import { z } from "zod";
@@ -12,11 +19,17 @@ export type ChatMessageDataPart = z.infer<typeof ChatMessageDataPartSchema>;
 export const tools = {} satisfies ToolSet;
 export type ChatMessageTools = InferUITools<typeof tools>;
 
-export type ChatMessage = UIMessage<
-  ChatMessageMetadata,
-  ChatMessageDataPart,
-  ChatMessageTools
+export type ChatMessagePart = Extract<
+  UIMessagePart<ChatMessageDataPart, ChatMessageTools>,
+  TextUIPart
 >;
+
+export type ChatMessage = OmitKnownKeys<
+  UIMessage<ChatMessageMetadata, ChatMessageDataPart, ChatMessageTools>,
+  "parts"
+> & {
+  parts: ChatMessagePart[];
+};
 
 export async function safeValidateChatMessages({
   messages,
