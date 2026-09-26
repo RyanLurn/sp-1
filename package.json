@@ -26,6 +26,7 @@
     "@streamdown/mermaid": "1.0.2",
     "@tanstack/react-router": "1.170.39",
     "@tanstack/react-start": "1.168.58",
+    "@tursodatabase/database": "0.7.2",
     "ai": "7.0.113",
     "class-variance-authority": "0.7.1",
     "cn": "0.4.0",

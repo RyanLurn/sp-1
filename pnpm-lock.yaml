@@ -205,6 +205,9 @@ importers:
       '@tanstack/react-start':
         specifier: 1.168.58
         version: 1.168.58(esbuild@0.28.2)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.10)(vite@8.3.0(@types/node@26.6.2)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.15))
+      '@tursodatabase/database':
+        specifier: 0.7.2
+        version: 0.7.2
       ai:
         specifier: 7.0.113
         version: 7.0.113(zod@4.6.5)
@@ -216,7 +219,7 @@ importers:
         version: 0.4.0
       drizzle-orm:
         specifier: 1.0.0-rc.4
-        version: 1.0.0-rc.4(zod@4.6.5)
+        version: 1.0.0-rc.4(@tursodatabase/database-common@0.7.2)(@tursodatabase/database@0.7.2)(zod@4.6.5)
       lucide-react:
         specifier: 1.47.0
         version: 1.47.0(react@19.3.0)
@@ -1558,6 +1561,34 @@ packages:
 
   '@ts-morph/common@0.27.0':
     resolution: {integrity: sha512-Wf29UqxWDpc+i61k3oIOzcUfQt79PIT9y/MWfAGlrkjg6lBC1hwDECLXPVJAhWjiGbfBCxZd65F/LIZF3+jeJQ==}
+
+  '@tursodatabase/database-common@0.7.2':
+    resolution: {integrity: sha512-c4uWaA5m7nyDemUrjvX6lQQ89cBxv1jCv7nmwq5JoagyXgbMxDeBfLcY7N5kn0oEcnD0Y+cf09S0wKEXKFKbfg==}
+
+  '@tursodatabase/database-darwin-arm64@0.7.2':
+    resolution: {integrity: sha512-pDYbrPnmsqzWsf21bQXXGKmGhcLdfQQVjx+yrpC/IboCue5o/h9fDZ1QFzQEP6CHRXXoc+pwQCyF8KBntI8fdA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@tursodatabase/database-linux-arm64-gnu@0.7.2':
+    resolution: {integrity: sha512-/Blz7cRssWh7dk8vGs7Cq3kupHOnI0GROAg+u9J4MD5U5ABAabJGN7iW5YQ16jZW35Bv2AkmJAyjvsCWdTyfTg==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@tursodatabase/database-linux-x64-gnu@0.7.2':
+    resolution: {integrity: sha512-rXxInfTxKRPG3XeOAZvzJuX4wF+m9t9BjLbFnKU83Ad8ob2z88r1x+EV7IBzEFhz2FbvrRgriH7PhIEZ7Lx5ug==}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@tursodatabase/database-win32-x64-msvc@0.7.2':
+    resolution: {integrity: sha512-AUvN3KO1bZOpsXVofRIMM2+MJ6OghUhgK62t8/3Bsb0Zzt6PztaMvJrtaWI6u5Olx0WCfGdhaVKyegcjYPNAeA==}
+    cpu: [x64]
+    os: [win32]
+
+  '@tursodatabase/database@0.7.2':
+    resolution: {integrity: sha512-B84QicyDYnKt97qxgb7861cQQC26kuv/LkUlCnpxGs4tuGT9zgS2z/Mt+BkG/wOo1fB4rsSycOgGCbi0xU0YOQ==}
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -5333,6 +5364,29 @@ snapshots:
       minimatch: 10.2.6
       path-browserify: 1.0.1
 
+  '@tursodatabase/database-common@0.7.2': {}
+
+  '@tursodatabase/database-darwin-arm64@0.7.2':
+    optional: true
+
+  '@tursodatabase/database-linux-arm64-gnu@0.7.2':
+    optional: true
+
+  '@tursodatabase/database-linux-x64-gnu@0.7.2':
+    optional: true
+
+  '@tursodatabase/database-win32-x64-msvc@0.7.2':
+    optional: true
+
+  '@tursodatabase/database@0.7.2':
+    dependencies:
+      '@tursodatabase/database-common': 0.7.2
+    optionalDependencies:
+      '@tursodatabase/database-darwin-arm64': 0.7.2
+      '@tursodatabase/database-linux-arm64-gnu': 0.7.2
+      '@tursodatabase/database-linux-x64-gnu': 0.7.2
+      '@tursodatabase/database-win32-x64-msvc': 0.7.2
+
   '@types/chai@5.2.3':
     dependencies:
       '@types/deep-eql': 4.0.2
@@ -6043,8 +6097,10 @@ snapshots:
 
   dotenv@17.4.2: {}
 
-  drizzle-orm@1.0.0-rc.4(zod@4.6.5):
+  drizzle-orm@1.0.0-rc.4(@tursodatabase/database-common@0.7.2)(@tursodatabase/database@0.7.2)(zod@4.6.5):
     optionalDependencies:
+      '@tursodatabase/database': 0.7.2
+      '@tursodatabase/database-common': 0.7.2
       zod: 4.6.5
 
   dunder-proto@1.0.1:
