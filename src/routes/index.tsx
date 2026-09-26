@@ -16,7 +16,7 @@ function HomePage() {
   const { messages, sendMessage, status } = useChat<ChatMessage>({
     transport: new DefaultChatTransport({
       prepareSendMessagesRequest: ({ messages }) => {
-        return { body: { message: messages[messages.length - 1] } };
+        return { body: { newUserMessage: messages[messages.length - 1] } };
       },
     }),
     generateId: generateUuidV7,
