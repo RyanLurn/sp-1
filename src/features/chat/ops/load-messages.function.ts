@@ -19,14 +19,7 @@ export const loadChatMessages = createServerFn().handler(
     const listResult = await listChatMessages();
 
     if (listResult.success) {
-      const chatMessageList = listResult.data;
-      const chatMessages = chatMessageList.map((message) => ({
-        id: message.id,
-        role: message.role,
-        parts: message.parts,
-        metadata: message.metadata,
-      }));
-      return succeed(chatMessages);
+      return succeed(listResult.data);
     }
 
     const error = listResult.error;
