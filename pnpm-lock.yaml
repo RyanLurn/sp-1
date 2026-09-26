@@ -181,15 +181,21 @@ importers:
       '@fontsource-variable/geist-mono':
         specifier: 5.3.0
         version: 5.3.0
+      '@little-nebulae/error':
+        specifier: 1.1.0
+        version: 1.1.0(@little-nebulae/type-utils@1.2.0)
       '@little-nebulae/http':
         specifier: 0.1.0
         version: 0.1.0(@little-nebulae/type-utils@1.2.0)
+      '@little-nebulae/result':
+        specifier: 1.1.0
+        version: 1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5)
       '@little-nebulae/type-utils':
         specifier: 1.2.0
         version: 1.2.0
       '@little-nebulae/web-fetch':
         specifier: 0.2.0
-        version: 0.2.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5))(@little-nebulae/result@1.0.0)(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)
+        version: 0.2.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5))(zod@4.6.5))(@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)
       '@shadcn/react':
         specifier: 0.3.1
         version: 0.3.1(@types/react@19.3.0)(react@19.3.0)
@@ -725,8 +731,18 @@ packages:
       '@little-nebulae/result': ^1.0.0
       zod: ^4.6.0
 
-  '@little-nebulae/result@1.0.0':
-    resolution: {integrity: sha512-yetamyO3lwefhoXdemxPdjRLrI5yXJIm6ZwGi4KgiWKaQpfKi8myAuIjlzTkheUD/Z4hRnJmi/Sm9ovvCnxkqQ==}
+  '@little-nebulae/result@1.1.0':
+    resolution: {integrity: sha512-WGZ48ZwFod66nOkYqrjyKos2FjRxw9uAYZiozU5Rjh0Hn9Jt2H+kF6lCGS4CnHQXrBlYxfpWequL6QN4iQ/sOA==}
+    peerDependencies:
+      '@little-nebulae/serialize-error': ^0.1.0
+      zod: ^4.6.0
+
+  '@little-nebulae/serialize-error@0.1.0':
+    resolution: {integrity: sha512-jChifaSgR8t0XQRI5MijF5K9kcph8VEGr7/10gNZYJosI305EHEwF+DQWI+l2JGVqck5DWMs6Shh6APnFequ5A==}
+    peerDependencies:
+      '@little-nebulae/error': ^1.1.0
+      '@little-nebulae/type-utils': ^1.2.0
+      zod: ^4.6.0
 
   '@little-nebulae/type-utils@1.2.0':
     resolution: {integrity: sha512-dztj0ThTslqowbRd6XNQ5/Dz9WV+fYBvhCW3CjokXCmRQWvyrJNCU2sulACqyt1V7v8fjrjGcwCwaEQhGWM8hQ==}
@@ -3422,6 +3438,10 @@ packages:
     resolution: {integrity: sha512-kQK9LGGFiHtrWiNhZtA7Qbw17AQz+dmsEKODRIVTXA9+e5MS/2gZEBhYJt13GrAz5/IOZKddH/0Z3TP/Zgo+yw==}
     engines: {node: '>=18'}
 
+  non-error@0.1.0:
+    resolution: {integrity: sha512-TMB1uHiGsHRGv1uYclfhivcnf0/PdFp2pNqRxXjncaAsjYMoisaQJI+SSZCqRq+VliwRTC8tsMQfmrWjDMhkPQ==}
+    engines: {node: '>=20'}
+
   npm-run-path@4.0.1:
     resolution: {integrity: sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==}
     engines: {node: '>=8'}
@@ -3775,6 +3795,10 @@ packages:
     resolution: {integrity: sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ==}
     engines: {node: '>= 18'}
 
+  serialize-error@13.0.1:
+    resolution: {integrity: sha512-bBZaRwLH9PN5HbLCjPId4dP5bNGEtumcErgOX952IsvOhVPrm3/AeK1y0UHA/QaPG701eg0yEnOKsCOC6X/kaA==}
+    engines: {node: '>=20'}
+
   seroval-plugins@1.6.7:
     resolution: {integrity: sha512-4Nk35ttD3DTDJW4hgw5StsVAPeU6qnDFnULAouw6tQ7oLTV/ICXrWpsXo2EE52eSP2joUMazbVf52mFEcADqRw==}
     engines: {node: '>=10'}
@@ -3939,6 +3963,10 @@ packages:
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
 
+  tagged-tag@1.0.0:
+    resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
+    engines: {node: '>=20'}
+
   tailwind-merge@3.7.0:
     resolution: {integrity: sha512-XPPUyAc+cvspz3lHTcR/QgPfW2A0lv/xQNIjX3HGhLR+Nq2lHaLq5MtTesHn8GUr3W3DguT2KT5x3NVgRtYwmA==}
 
@@ -4011,6 +4039,10 @@ packages:
 
   tw-animate-css@1.4.0:
     resolution: {integrity: sha512-7bziOlRqH0hJx80h/3mbicLW7o8qLsH5+RaLR2t+OHM3D0JlWGODQKQ4cxbK7WlvmUxpcj6Kgu6EKqjrGFe3QQ==}
+
+  type-fest@5.10.0:
+    resolution: {integrity: sha512-NoSdpq/WEiAg5sjmBkmV/hfxv6HJH4NqPNrqjtSO5CwRmpsDfaf4begxW34KdJykH/l1yHtwBWQkCRdoXO8mPA==}
+    engines: {node: '>=20'}
 
   type-is@2.1.0:
     resolution: {integrity: sha512-faYHw0anBbc/kWF3zFTEnxSFOAGUX9GFbOBthvDdLsIlEoWOFOtS0zgCiQYwIskL9iGXZL3kAXD8OoZ4GmMATA==}
@@ -4708,22 +4740,32 @@ snapshots:
     dependencies:
       '@little-nebulae/type-utils': 1.2.0
 
-  '@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5)':
+  '@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5))(zod@4.6.5)':
     dependencies:
       '@little-nebulae/error': 1.1.0(@little-nebulae/type-utils@1.2.0)
-      '@little-nebulae/result': 1.0.0
+      '@little-nebulae/result': 1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5)
       zod: 4.6.5
 
-  '@little-nebulae/result@1.0.0': {}
+  '@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5)':
+    dependencies:
+      '@little-nebulae/serialize-error': 0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)
+      zod: 4.6.5
+
+  '@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)':
+    dependencies:
+      '@little-nebulae/error': 1.1.0(@little-nebulae/type-utils@1.2.0)
+      '@little-nebulae/type-utils': 1.2.0
+      serialize-error: 13.0.1
+      zod: 4.6.5
 
   '@little-nebulae/type-utils@1.2.0': {}
 
-  '@little-nebulae/web-fetch@0.2.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5))(@little-nebulae/result@1.0.0)(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)':
+  '@little-nebulae/web-fetch@0.2.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/http@0.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/json@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5))(zod@4.6.5))(@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)':
     dependencies:
       '@little-nebulae/error': 1.1.0(@little-nebulae/type-utils@1.2.0)
       '@little-nebulae/http': 0.1.0(@little-nebulae/type-utils@1.2.0)
-      '@little-nebulae/json': 0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.0.0)(zod@4.6.5)
-      '@little-nebulae/result': 1.0.0
+      '@little-nebulae/json': 0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/result@1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5))(zod@4.6.5)
+      '@little-nebulae/result': 1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5)
       '@little-nebulae/type-utils': 1.2.0
       zod: 4.6.5
 
@@ -7187,6 +7229,8 @@ snapshots:
 
   node-releases@2.0.57: {}
 
+  non-error@0.1.0: {}
+
   npm-run-path@4.0.1:
     dependencies:
       path-key: 3.1.1
@@ -7627,6 +7671,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  serialize-error@13.0.1:
+    dependencies:
+      non-error: 0.1.0
+      type-fest: 5.10.0
+
   seroval-plugins@1.6.7(seroval@1.6.7):
     dependencies:
       seroval: 1.6.7
@@ -7836,6 +7885,8 @@ snapshots:
 
   systeminformation@5.33.13: {}
 
+  tagged-tag@1.0.0: {}
+
   tailwind-merge@3.7.0: {}
 
   tailwindcss@4.3.3: {}
@@ -7891,6 +7942,10 @@ snapshots:
       fsevents: 2.3.3
 
   tw-animate-css@1.4.0: {}
+
+  type-fest@5.10.0:
+    dependencies:
+      tagged-tag: 1.0.0
 
   type-is@2.1.0:
     dependencies:
