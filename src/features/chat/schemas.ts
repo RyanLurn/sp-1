@@ -10,6 +10,13 @@ import type {
 import { safeValidateUIMessages } from "ai";
 import { z } from "zod";
 
+export const ChatMessageTextPartSchema = z.object({
+  type: z.literal("text"),
+  text: z.string(),
+  state: z.enum(["streaming", "done"]).exactOptional(),
+});
+export type ChatMessageTextPart = z.infer<typeof ChatMessageTextPartSchema>;
+
 export const ChatMessageMetadataSchema = z.json();
 export type ChatMessageMetadata = z.infer<typeof ChatMessageMetadataSchema>;
 
