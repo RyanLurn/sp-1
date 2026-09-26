@@ -190,6 +190,9 @@ importers:
       '@little-nebulae/result':
         specifier: 1.1.0
         version: 1.1.0(@little-nebulae/serialize-error@0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5))(zod@4.6.5)
+      '@little-nebulae/serialize-error':
+        specifier: 0.1.0
+        version: 0.1.0(@little-nebulae/error@1.1.0(@little-nebulae/type-utils@1.2.0))(@little-nebulae/type-utils@1.2.0)(zod@4.6.5)
       '@little-nebulae/type-utils':
         specifier: 1.2.0
         version: 1.2.0

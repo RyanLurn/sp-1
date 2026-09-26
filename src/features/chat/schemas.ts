@@ -6,7 +6,14 @@ import { z } from "zod";
 export const ChatMessageMetadataSchema = z.json();
 export type ChatMessageMetadata = z.infer<typeof ChatMessageMetadataSchema>;
 
-export type ChatMessage = UIMessage<ChatMessageMetadata, {}, {}>;
+export const ChatMessageDataPartSchema = z.record(z.string(), z.json());
+export type ChatMessageDataPart = z.infer<typeof ChatMessageDataPartSchema>;
+
+export type ChatMessage = UIMessage<
+  ChatMessageMetadata,
+  ChatMessageDataPart,
+  {}
+>;
 
 export async function safeValidateChatMessages({
   messages,
