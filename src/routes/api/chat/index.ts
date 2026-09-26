@@ -10,7 +10,11 @@ import {
 import { z } from "zod";
 
 import { groqProvider } from "@/config/ai/groq";
-import { safeValidateChatMessages } from "@/features/chat/schemas";
+import { db } from "@/db";
+import {
+  safeValidateChatMessages,
+  SendMessageRequestBodySchema,
+} from "@/features/chat/schemas";
 
 export const Route = createFileRoute("/api/chat/")({
   server: {
@@ -29,9 +33,8 @@ export const Route = createFileRoute("/api/chat/")({
         }
         const jsonBody = parseRequestBodyResult.data;
 
-        const parseJsonBodyResult = z
-          .object({ messages: z.unknown() })
-          .safeParse(jsonBody);
+        const parseJsonBodyResult =
+          SendMessageRequestBodySchema.safeParse(jsonBody);
         if (!parseJsonBodyResult.success) {
           const error = parseJsonBodyResult.error;
           console.error(error);
@@ -41,7 +44,7 @@ export const Route = createFileRoute("/api/chat/")({
             statusText: httpError.text,
           });
         }
-        const { messages } = parseJsonBodyResult.data;
+        const { newUserMessage } = parseJsonBodyResult.data;
 
         const validateMessagesResult = await safeValidateChatMessages({
           messages,
