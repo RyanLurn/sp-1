@@ -28,6 +28,17 @@ export const ChatMessageTextPartSchema = z.object({
 });
 export type ChatMessageTextPart = z.infer<typeof ChatMessageTextPartSchema>;
 
+export const ChatMessageReasoningPartSchema = z.object({
+  type: z.literal("reasoning"),
+  id: z.string().exactOptional(),
+  text: z.string(),
+  state: z.enum(CHAT_MESSAGE_PART_STREAMING_STATE_LIST).exactOptional(),
+  providerMetadata: z.record(z.string(), z.any()).exactOptional(),
+});
+export type ChatMessageReasoningPart = z.infer<
+  typeof ChatMessageReasoningPartSchema
+>;
+
 export const ChatMessageMetadataSchema = z.json();
 export type ChatMessageMetadata = z.infer<typeof ChatMessageMetadataSchema>;
 
