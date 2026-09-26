@@ -5,13 +5,16 @@ import type { ChatMessage } from "@/features/chat/schemas";
 
 import { ChatMessageThread } from "@/features/chat/components/message/thread";
 import { PromptContainer } from "@/features/chat/components/prompt/container";
+import { generateUuidV7 } from "@/lib/uuid";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
 function HomePage() {
-  const { messages, sendMessage, status } = useChat<ChatMessage>();
+  const { messages, sendMessage, status } = useChat<ChatMessage>({
+    generateId: generateUuidV7,
+  });
 
   return (
     <div className="flex h-full flex-col gap-y-3">
