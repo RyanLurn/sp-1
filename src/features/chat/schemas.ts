@@ -10,8 +10,13 @@ import type {
 import { safeValidateUIMessages } from "ai";
 import { z } from "zod";
 
+import { CHAT_MESSAGE_ROLE_LIST } from "@/features/chat/constants";
+
 export const ChatMessageIdSchema = z.uuidv7().brand<"ChatMessageId">();
 export type ChatMessageId = z.infer<typeof ChatMessageIdSchema>;
+
+export const ChatMessageRoleSchema = z.enum(CHAT_MESSAGE_ROLE_LIST);
+export type ChatMessageRole = z.infer<typeof ChatMessageRoleSchema>;
 
 export const ChatMessageTextPartSchema = z.object({
   type: z.literal("text"),
