@@ -7,20 +7,19 @@ import {
   streamText,
   toUIMessageStream,
 } from "ai";
-import { z } from "zod";
+
+import type { ChatMessage } from "@/features/chat/schemas";
 
 import { groqProvider } from "@/config/ai/groq";
-import { db } from "@/db";
-import {
-  safeValidateChatMessages,
-  SendMessageRequestBodySchema,
-} from "@/features/chat/schemas";
+import { insertOneChatMessage } from "@/db/queries/chat-message/insert-one.server";
+import { selectAllChatMessages } from "@/db/queries/chat-message/select-all.server";
+import { SendMessageRequestBodySchema } from "@/features/chat/schemas";
 
 export const Route = createFileRoute("/api/chat/")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        // Parse and validate the request's body to get the messages array
+        // Parse and validate the request's body to get the new user message
         const parseRequestBodyResult = await parseJsonRequestBody({ request });
         if (!parseRequestBodyResult.success) {
           const error = parseRequestBodyResult.error;
@@ -46,28 +45,55 @@ export const Route = createFileRoute("/api/chat/")({
         }
         const { newUserMessage } = parseJsonBodyResult.data;
 
-        const validateMessagesResult = await safeValidateChatMessages({
-          messages,
+        // Insert the new user message into the database
+        const insertResult = await insertOneChatMessage({
+          insertedChatMessage: newUserMessage,
         });
-        if (!validateMessagesResult.success) {
-          const error = validateMessagesResult.error;
+        if (!insertResult.success) {
+          const error = insertResult.error;
           console.error(error);
-          const httpError = HTTP_ERROR_RESPONSE_STATUS_RECORD.BAD_REQUEST;
+          const httpError =
+            HTTP_ERROR_RESPONSE_STATUS_RECORD.INTERNAL_SERVER_ERROR;
           return new Response(error.message, {
             status: httpError.code,
             statusText: httpError.text,
           });
         }
-        const validMessages = validateMessagesResult.data;
+
+        // Select all chat messages (including the newly inserted one)
+        const selectResult = await selectAllChatMessages();
+        if (!selectResult.success) {
+          const error = selectResult.error;
+          console.error(error);
+          const httpError =
+            HTTP_ERROR_RESPONSE_STATUS_RECORD.INTERNAL_SERVER_ERROR;
+          return new Response(error.message, {
+            status: httpError.code,
+            statusText: httpError.text,
+          });
+        }
+        const chatMessages = selectResult.data;
 
         // Stream AI response
         const { stream } = streamText({
           model: groqProvider("openai/gpt-oss-20b"),
-          messages: await convertToModelMessages(validMessages),
+          messages: await convertToModelMessages<ChatMessage>(chatMessages),
         });
 
         return createUIMessageStreamResponse({
-          stream: toUIMessageStream({ stream }),
+          stream: toUIMessageStream({
+            stream,
+            originalMessages: chatMessages,
+            onEnd: async ({ responseMessage }) => {
+              const insertResult = await insertOneChatMessage({
+                insertedChatMessage: responseMessage,
+              });
+              if (!insertResult.success) {
+                const error = insertResult.error;
+                console.error(error);
+              }
+            },
+          }),
         });
       },
     },
