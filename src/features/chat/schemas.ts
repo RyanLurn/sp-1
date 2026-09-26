@@ -66,3 +66,10 @@ export const ChatMessageSchema = z.discriminatedUnion(CHAT_MESSAGE_ROLE_KEY, [
   AssistantChatMessageSchema,
 ]);
 export type ChatMessage = z.infer<typeof ChatMessageSchema>;
+
+export const SendMessageRequestBodySchema = z.object({
+  newUserMessage: UserChatMessageSchema.omit({ id: true }),
+});
+export type SendMessageRequestBody = z.infer<
+  typeof SendMessageRequestBodySchema
+>;
