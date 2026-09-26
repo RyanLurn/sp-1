@@ -10,6 +10,9 @@ import type {
 import { safeValidateUIMessages } from "ai";
 import { z } from "zod";
 
+export const ChatMessageIdSchema = z.uuidv7().brand<"ChatMessageId">();
+export type ChatMessageId = z.infer<typeof ChatMessageIdSchema>;
+
 export const ChatMessageTextPartSchema = z.object({
   type: z.literal("text"),
   text: z.string(),
