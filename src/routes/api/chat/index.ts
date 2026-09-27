@@ -78,7 +78,7 @@ export const Route = createFileRoute("/api/chat/")({
 
         // Stream AI response
         const { stream } = streamText({
-          model: groqProvider("openai/gpt-oss-20b"),
+          model: groqProvider("qwen/qwen3.8-27b"),
           messages: await convertToModelMessages<ChatMessage>(chatMessages),
           experimental_transform: smoothStream(),
         });
