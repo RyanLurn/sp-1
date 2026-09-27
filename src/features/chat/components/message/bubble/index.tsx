@@ -3,9 +3,8 @@ import type { ComponentProps } from "react";
 
 import type { ChatMessage } from "@/features/chat/schemas";
 
-import { Bubble, BubbleContent } from "@/components/ui/bubble";
 import { Message, MessageContent } from "@/components/ui/message";
-import { ChatMessageMarkdown } from "@/features/chat/components/message/markdown";
+import { ChatMessageTextBubble } from "@/features/chat/components/message/bubble/text";
 
 interface ChatMessageBubbleProps extends OmitKnownKeys<
   ComponentProps<typeof Message>,
@@ -26,11 +25,11 @@ export function ChatMessageBubble({
         {message.parts.map((part, index) => {
           if (part.type === "text") {
             return (
-              <Bubble key={index} variant={isUser ? "secondary" : "ghost"}>
-                <BubbleContent>
-                  <ChatMessageMarkdown text={part.text} />
-                </BubbleContent>
-              </Bubble>
+              <ChatMessageTextBubble
+                key={index}
+                isUser={isUser}
+                textPart={part}
+              />
             );
           }
         })}
