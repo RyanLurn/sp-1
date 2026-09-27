@@ -17,6 +17,13 @@ export type ChatMessageId = z.infer<typeof ChatMessageIdSchema>;
 export const ChatMessageRoleSchema = z.enum(CHAT_MESSAGE_ROLE_LIST);
 export type ChatMessageRole = z.infer<typeof ChatMessageRoleSchema>;
 
+export const ChatMessageStepStartPartSchema = z.object({
+  [CHAT_MESSAGE_PART_TYPE_KEY]: z.literal("step-start"),
+});
+export type ChatMessageStepStartPart = z.infer<
+  typeof ChatMessageStepStartPartSchema
+>;
+
 export const ChatMessageTextPartSchema = z.object({
   [CHAT_MESSAGE_PART_TYPE_KEY]: z.literal("text"),
   text: z.string(),
@@ -54,6 +61,7 @@ export const AssistantChatMessageSchema = z.object({
   [CHAT_MESSAGE_ROLE_KEY]: z.literal(CHAT_MESSAGE_ASSISTANT_ROLE),
   parts: z.array(
     z.discriminatedUnion(CHAT_MESSAGE_PART_TYPE_KEY, [
+      ChatMessageStepStartPartSchema,
       ChatMessageTextPartSchema,
       ChatMessageReasoningPartSchema,
     ]),

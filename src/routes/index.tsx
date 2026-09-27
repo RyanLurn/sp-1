@@ -29,8 +29,9 @@ function HomePage() {
     messages: initialMessages,
     transport: new DefaultChatTransport({
       prepareSendMessagesRequest: ({ messages }) => {
+        const newUserMessage = messages[messages.length - 1];
         return {
-          body: { [NEW_USER_MESSAGE_KEY]: messages[messages.length - 1] },
+          body: { [NEW_USER_MESSAGE_KEY]: newUserMessage },
         };
       },
     }),
