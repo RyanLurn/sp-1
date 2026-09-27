@@ -24,13 +24,6 @@ export type ChatMessageStepStartPart = z.infer<
   typeof ChatMessageStepStartPartSchema
 >;
 
-export const ChatMessageTextPartSchema = z.object({
-  [CHAT_MESSAGE_PART_TYPE_KEY]: z.literal("text"),
-  text: z.string(),
-  state: z.enum(CHAT_MESSAGE_PART_STREAMING_STATE_LIST).exactOptional(),
-});
-export type ChatMessageTextPart = z.infer<typeof ChatMessageTextPartSchema>;
-
 export const ChatMessageReasoningPartSchema = z.object({
   [CHAT_MESSAGE_PART_TYPE_KEY]: z.literal("reasoning"),
   id: z.string().exactOptional(),
@@ -41,6 +34,13 @@ export const ChatMessageReasoningPartSchema = z.object({
 export type ChatMessageReasoningPart = z.infer<
   typeof ChatMessageReasoningPartSchema
 >;
+
+export const ChatMessageTextPartSchema = z.object({
+  [CHAT_MESSAGE_PART_TYPE_KEY]: z.literal("text"),
+  text: z.string(),
+  state: z.enum(CHAT_MESSAGE_PART_STREAMING_STATE_LIST).exactOptional(),
+});
+export type ChatMessageTextPart = z.infer<typeof ChatMessageTextPartSchema>;
 
 export const SystemChatMessageSchema = z.object({
   id: ChatMessageIdSchema,
@@ -62,8 +62,8 @@ export const AssistantChatMessageSchema = z.object({
   parts: z.array(
     z.discriminatedUnion(CHAT_MESSAGE_PART_TYPE_KEY, [
       ChatMessageStepStartPartSchema,
-      ChatMessageTextPartSchema,
       ChatMessageReasoningPartSchema,
+      ChatMessageTextPartSchema,
     ]),
   ),
 });
