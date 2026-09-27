@@ -4,7 +4,7 @@ import { Streamdown } from "streamdown";
 
 import { useTheme } from "@/components/theme/provider";
 
-export function ChatMessageMarkdownContent({ text }: { text: string }) {
+export function ChatMessageMarkdown({ text }: { text: string }) {
   const { theme } = useTheme();
 
   return (

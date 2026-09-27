@@ -5,7 +5,7 @@ import type { ChatMessage } from "@/features/chat/schemas";
 
 import { Bubble, BubbleContent } from "@/components/ui/bubble";
 import { Message, MessageContent } from "@/components/ui/message";
-import { ChatMessageMarkdownContent } from "@/features/chat/components/message/content/markdown";
+import { ChatMessageMarkdown } from "@/features/chat/components/message/markdown";
 
 interface ChatMessageBubbleProps extends OmitKnownKeys<
   ComponentProps<typeof Message>,
@@ -28,7 +28,7 @@ export function ChatMessageBubble({
             return (
               <Bubble key={index} variant={isUser ? "secondary" : "ghost"}>
                 <BubbleContent>
-                  <ChatMessageMarkdownContent text={part.text} />
+                  <ChatMessageMarkdown text={part.text} />
                 </BubbleContent>
               </Bubble>
             );
