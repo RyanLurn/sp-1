@@ -4,6 +4,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   convertToModelMessages,
   createUIMessageStreamResponse,
+  smoothStream,
   streamText,
   toUIMessageStream,
 } from "ai";
@@ -79,6 +80,7 @@ export const Route = createFileRoute("/api/chat/")({
         const { stream } = streamText({
           model: groqProvider("openai/gpt-oss-20b"),
           messages: await convertToModelMessages<ChatMessage>(chatMessages),
+          experimental_transform: smoothStream(),
         });
 
         return createUIMessageStreamResponse({
