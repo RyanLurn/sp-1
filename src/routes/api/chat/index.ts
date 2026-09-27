@@ -14,6 +14,7 @@ import { groqProvider } from "@/config/ai/groq";
 import { insertOneChatMessage } from "@/db/queries/chat-message/insert-one.server";
 import { selectAllChatMessages } from "@/db/queries/chat-message/select-all.server";
 import { SendMessageRequestBodySchema } from "@/features/chat/schemas";
+import { generateUuidV7 } from "@/lib/uuid";
 
 export const Route = createFileRoute("/api/chat/")({
   server: {
@@ -84,6 +85,7 @@ export const Route = createFileRoute("/api/chat/")({
           stream: toUIMessageStream({
             stream,
             originalMessages: chatMessages,
+            generateMessageId: generateUuidV7,
             onEnd: async ({ responseMessage }) => {
               const insertResult = await insertOneChatMessage({
                 insertedChatMessage: responseMessage,
